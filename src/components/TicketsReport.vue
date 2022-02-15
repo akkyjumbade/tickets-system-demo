@@ -5,7 +5,7 @@
          <h3>
             Statistieken tickets
             <select class="form-control" v-model="sortBy">
-               <option>allemaal</option>
+               <option value="">allemaal</option>
                <option value="open">open</option>
                <option value="close">gesloten</option>
             </select>
@@ -50,7 +50,12 @@ export default {
             return []
          }
          let sortBy = this.sortBy
+         console.log({ sortBy })
+         if (!sortBy) {
+            return this.tickets
+         }
          return this.tickets.filter(row => {
+            // if (sortBy)
             return row.status == sortBy
          })
       }
